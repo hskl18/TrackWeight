@@ -8,23 +8,11 @@ import SwiftUI
 struct ScaleView: View {
     @StateObject private var viewModel = ScaleViewModel()
     @State private var scaleCompression: CGFloat = 0
-    @State private var displayShake = false
-    @State private var particleOffset: CGFloat = 0
     @State private var keyMonitor: Any?
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // Animated gradient background
-//                    LinearGradient(
-//                        colors: [
-//                            Color(red: 0.95, green: 0.97, blue: 1.0),
-//                            Color(red: 0.85, green: 0.92, blue: 0.98)
-//                        ],
-//                        startPoint: .topLeading,
-//                        endPoint: .bottomTrailing
-//                    )
-//                    .ignoresSafeArea()
                 
                 VStack(spacing: geometry.size.height * 0.06) {
                     // Title with subtitle directly underneath
@@ -61,7 +49,6 @@ struct ScaleView: View {
                             weight: viewModel.currentWeight,
                             hasTouch: viewModel.hasTouch,
                             compression: $scaleCompression,
-                            displayShake: $displayShake,
                             scaleFactor: min(geometry.size.width / 700, geometry.size.height / 500)
                         )
                         Spacer()
@@ -152,7 +139,6 @@ struct CartoonScaleView: View {
     let weight: Float
     let hasTouch: Bool
     @Binding var compression: CGFloat
-    @Binding var displayShake: Bool
     let scaleFactor: CGFloat
     
     var body: some View {
